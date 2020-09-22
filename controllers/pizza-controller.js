@@ -55,7 +55,7 @@ const pizzaController = {
     // Update a pizza at api/pizzas/id
     updatePizza({params, body}, res) {
         // findOneAndUpdate will return the document as a response, updateOne or updateMany do not return the new document
-        Pizza.findOneAndUpdate({_id: params.id}, body, {new: true})
+        Pizza.findOneAndUpdate({_id: params.id}, body, {new: true, runValidators: true})
             .then(dbPizzaData => {
                 if(!dbPizzaData) {
                     res.status(404).json({message: "No pizza found with this ID"});
